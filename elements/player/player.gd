@@ -1,9 +1,8 @@
 extends CharacterBody2D
 
-@onready var state_chart: StateChart = %StateChart
-
 @export var movement_speed:float
 
+@onready var state_chart: StateChart = %StateChart
 
 func get_input():
 	var input_direction:Vector2 = Input.get_vector("left", "right", "up", "down")

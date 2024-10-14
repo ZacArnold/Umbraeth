@@ -34,7 +34,11 @@ enabled=PackedStringArray("res://addons/godot_resource_groups/plugin.cfg", "res:
 
 folder_colors={
 "res://addons/": "red",
-"res://data/": "orange"
+"res://assets/": "orange",
+"res://data/": "yellow",
+"res://elements/": "green",
+"res://exports/": "teal",
+"res://user_interface/": "blue"
 }
 
 [godot_resource_groups]
