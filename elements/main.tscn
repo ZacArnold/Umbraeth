@@ -1,19 +1,23 @@
 [gd_scene load_steps=3 format=3 uid="uid://d33hduve3wknh"]
 
-[ext_resource type="Texture2D" uid="uid://cuqvt63fr7t1n" path="res://icon.svg" id="1_sm6h1"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_614k5"]
-size = Vector2(128, 128)
+[ext_resource type="PackedScene" uid="uid://cysugsgf28te3" path="res://elements/player/player.tscn" id="1_etd54"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="2_y5rff"]
 
 [node name="Main" type="Node2D"]
 
-[node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(568, 293)
+[node name="Player" parent="." instance=ExtResource("1_etd54")]
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_sm6h1")
+[node name="UIRoot" type="CanvasLayer" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-scale = Vector2(0.5, 0.5)
-shape = SubResource("RectangleShape2D_614k5")
+[node name="StateChartDebugger" parent="UIRoot" instance=ExtResource("2_y5rff")]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -373.0
+offset_top = -304.0
+offset_bottom = 304.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+initial_node_to_watch = NodePath("../../Player")

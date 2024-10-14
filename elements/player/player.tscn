@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://cysugsgf28te3"]
+
+[ext_resource type="Texture2D" uid="uid://cuqvt63fr7t1n" path="res://icon.svg" id="1_63qoc"]
+[ext_resource type="Script" path="res://elements/player/player.gd" id="1_wnn2l"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_gi8jv"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="4_xwe54"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="5_d645t"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="6_fcg1d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_614k5"]
+size = Vector2(128, 128)
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(568, 293)
+motion_mode = 1
+script = ExtResource("1_wnn2l")
+movement_speed = 150.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_63qoc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_614k5")
+
+[node name="StateChart" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_gi8jv")
+
+[node name="CompoundState" type="Node" parent="StateChart"]
+script = ExtResource("4_xwe54")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("5_d645t")
+
+[node name="ToWalking" type="Node" parent="StateChart/CompoundState/Idle"]
+script = ExtResource("6_fcg1d")
+to = NodePath("../../Walking")
+event = &"walking"
+delay_in_seconds = "0.0"
+
+[node name="Walking" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("5_d645t")
+
+[node name="ToIdle" type="Node" parent="StateChart/CompoundState/Walking"]
+script = ExtResource("6_fcg1d")
+to = NodePath("../../Idle")
+event = &"idle"
+delay_in_seconds = "0.0"
+
+[node name="Attacking" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("5_d645t")
