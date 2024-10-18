@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cysugsgf28te3"]
+[gd_scene load_steps=9 format=3 uid="uid://cysugsgf28te3"]
 
 [ext_resource type="Texture2D" uid="uid://cuqvt63fr7t1n" path="res://icon.svg" id="1_63qoc"]
 [ext_resource type="Script" path="res://elements/player/player.gd" id="1_wnn2l"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_gi8jv"]
+[ext_resource type="PackedScene" uid="uid://d0lg0vcm5yffe" path="res://data/components/velocity_component.tscn" id="3_ibaek"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="4_xwe54"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="5_d645t"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="6_fcg1d"]
@@ -14,7 +15,6 @@ size = Vector2(128, 128)
 position = Vector2(568, 293)
 motion_mode = 1
 script = ExtResource("1_wnn2l")
-movement_speed = 150.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -23,6 +23,9 @@ texture = ExtResource("1_63qoc")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_614k5")
+
+[node name="VelocityComponent" parent="." instance=ExtResource("3_ibaek")]
+unique_name_in_owner = true
 
 [node name="StateChart" type="Node" parent="."]
 unique_name_in_owner = true
