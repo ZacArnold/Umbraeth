@@ -1,5 +1,5 @@
 class_name Player
-extends Node2D
+extends CharacterBody2D
 
 @export_group("Components")
 @export var state_chart: StateChart

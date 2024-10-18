@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cysugsgf28te3"]
+[gd_scene load_steps=10 format=3 uid="uid://cysugsgf28te3"]
 
 [ext_resource type="Texture2D" uid="uid://cuqvt63fr7t1n" path="res://icon.svg" id="1_63qoc"]
 [ext_resource type="Script" path="res://elements/player/player.gd" id="1_wnn2l"]
@@ -9,7 +9,10 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="5_d645t"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="6_fcg1d"]
 
-[node name="Player" type="Node2D" node_paths=PackedStringArray("state_chart", "velocity_component", "input_component")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggxjk"]
+size = Vector2(64, 62)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_chart", "velocity_component", "input_component")]
 position = Vector2(568, 293)
 script = ExtResource("1_wnn2l")
 state_chart = NodePath("StateChart")
@@ -23,11 +26,14 @@ input_component = NodePath("../InputComponent")
 
 [node name="InputComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("3_r0kbe")
-actor = NodePath("..")
+actor = NodePath("")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_63qoc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ggxjk")
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("3_gi8jv")

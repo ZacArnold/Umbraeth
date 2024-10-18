@@ -5,7 +5,7 @@ extends Node2D
 @export var speed: float
 
 @export_group("Components")
-@export var actor: Node2D
+@export var actor: CharacterBody2D
 @export var input_component: InputComponent
 
 var modded_speed: float = speed
@@ -20,8 +20,7 @@ func calculate_speed(add_modifiers: Array[float], mult_modifiers: Array[float]) 
 
 func calculate_velocity(delta) -> void:
 	var direction = input_component.input_direction
-	velocity = direction * modded_speed
+	actor.velocity = direction * modded_speed
 	
 func intitiate_velocity() -> void:
-	actor.position.x += velocity.x
-	actor.position.y += velocity.y
+	actor.move_and_slide()
